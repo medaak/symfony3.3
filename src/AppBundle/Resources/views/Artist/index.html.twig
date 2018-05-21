@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<h1>Artistes</h1>
+<table>
+    {% for artist in artists %}
+    <tr>
+        <td>
+        {{ artist.name }}
+        </td>
+        <td>
+            {{ artist.type }}
+        </td>
+        <td>
+            {{ artist.genre }}
+        </td>
+        <td>
+            <button><a href="http://localhost:8000/artist/update/{{ artist.id }}">Modifie moi</a></button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

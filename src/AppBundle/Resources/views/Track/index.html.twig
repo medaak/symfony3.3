@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+{% block title %}track{% endblock %}
+{% block body %}
+    <h1>tracks</h1>
+    <table>
+        <thead>
+        <th>ID</th>
+        <th>Titre</th>
+        <th>Artiste</th>
+        </thead>
+        {% for track in tracks %}
+            <tr>
+                <td>
+                    {{ track.id }}
+                </td>
+                <td>
+                    {{ track.title }}
+                </td>
+                <td>
+                    <a href="{{ path('app_artist_show',{'id':track.artist})}}">{{ track.artist }}</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
