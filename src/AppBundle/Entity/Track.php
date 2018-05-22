@@ -29,6 +29,13 @@ class Track
      */
     private $title;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="duration", type="integer", length=255)
+     */
+    private $duration;
+
 
     /**
      * @var string
@@ -107,5 +114,65 @@ class Track
     public function getArtist()
     {
         return $this->artist;
+    }
+
+    /**
+     * Add playlist.
+     *
+     * @param \AppBundle\Entity\Playlist $playlist
+     *
+     * @return Track
+     */
+    public function addPlaylist(\AppBundle\Entity\Playlist $playlist)
+    {
+        $this->playlists[] = $playlist;
+
+        return $this;
+    }
+
+    /**
+     * Remove playlist.
+     *
+     * @param \AppBundle\Entity\Playlist $playlist
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePlaylist(\AppBundle\Entity\Playlist $playlist)
+    {
+        return $this->playlists->removeElement($playlist);
+    }
+
+    /**
+     * Get playlists.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlaylists()
+    {
+        return $this->playlists;
+    }
+
+    /**
+     * Set duration.
+     *
+     * @param int $duration
+     *
+     * @return Track
+     */
+    public function setDuration($duration)
+    {
+        $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Get duration.
+     *
+     * @return int
+     */
+    public function getDuration()
+    {
+        return $this->duration;
     }
 }

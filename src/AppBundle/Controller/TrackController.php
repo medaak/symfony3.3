@@ -12,14 +12,14 @@ use AppBundle\Entity\Track;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Repository\TrackRepository;
 
 class TrackController extends Controller
 {
 
     public function indexAction()
     {
-        return $this->render('AppBundle:Track:index.html.twig', ['tracks' => $this->findAll()]);
+        $tracks = $this->getDoctrine()->getRepository(Track::class)->findAll();
+        return $this->render('AppBundle:Track:index.html.twig', ['tracks' => $tracks]);
     }
 
     public function showAction(Request $request, $id)

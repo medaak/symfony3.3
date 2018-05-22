@@ -23,7 +23,6 @@ class ArtistController extends Controller
         /*        $myContainer = $this->get('app.artist');
                 return $this->render('AppBundle:Artist:index.html.twig', ['artists' => $myContainer->findAll()]);*/
         $artists = $this->getDoctrine()->getRepository(Artist::class)->findAll();
-        dump($artists);
         return $this->render('AppBundle:Artist:index.html.twig', ['artists' => $artists]);
     }
 

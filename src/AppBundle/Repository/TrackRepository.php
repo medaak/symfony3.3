@@ -10,4 +10,20 @@ namespace AppBundle\Repository;
  */
 class TrackRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function find($id, $lockMode = null, $lockVersion = null)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function findAll()
+    {
+        return $this->createQueryBuilder('a')
+            ->getQuery()
+            ->execute();
+    }
+
 }

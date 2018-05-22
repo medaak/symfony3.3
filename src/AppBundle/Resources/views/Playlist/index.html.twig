@@ -5,23 +5,27 @@
     <table>
         <thead>
         <th>ID</th>
-        <th>Titre</th>
-        <th>Artiste</th>
+        <th>Nom</th>
+        <th>Tracks</th>
         <th>Duration</th>
         </thead>
-        {% for track in tracks %}
+        {% for playlist in playlists %}
             <tr>
                 <td>
-                    {{ track.id }}
+                    {{ playlist.id }}
                 </td>
                 <td>
-                    {{ track.title }}
+                    {{ playlist.name }}
                 </td>
                 <td>
-                    <a href="{{ path('app_artist_show',{'id':track.artist.id})}}">{{ track.artist.name }}</a>
+                    {% for track in playlist.tracks %}
+                        {{ track.title }}<br>
+                    {% endfor %}
                 </td>
                 <td>
-                    {{ track.duration | sec_to_min }}
+
+                        {{ playlist_duration(playlist.tracks) | sec_to_min }}
+
                 </td>
             </tr>
         {% endfor %}

@@ -26,6 +26,22 @@ app_artist_show:
     path:     /artist/{id}
     defaults: { _controller: AppBundle:Artist:show }
 
+app_mail_send:
+    path: /pumpit
+    defaults: { _controller: AppBundle:Mail:send }
+
+app_playlist_index:
+    path:     /playlists
+    defaults: { _controller: AppBundle:Playlist:index }
+
+app_playlist_show:
+    path:     /playlist/{id}
+    defaults: { _controller: AppBundle:Playlist:show }
+
+app_security_login:
+    path:     /login
+    defaults: { _controller: AppBundle:Security:login }
+
 app_track_index:
     path:     /tracks
     defaults: { _controller: AppBundle:Track:index }
@@ -35,7 +51,7 @@ app_track_show_json:
     defaults: { _controller: AppBundle:Track:showJson }
 
 app_track_show:
-    path:     /tracks/{id}
+    path:     /track/{id}
     defaults: { _controller: AppBundle:Track:show }
 
 app_track_session_show:

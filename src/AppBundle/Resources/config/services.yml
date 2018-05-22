@@ -10,3 +10,8 @@ services:
         class: AppBundle\Form\Type\ArtistType
         tags:
             - { name: form.type }
+    app.twig_extension:
+        class: AppBundle\Twig\AppExtension
+        public: false
+        tags:
+            - { name: twig.extension }

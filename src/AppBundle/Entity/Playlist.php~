@@ -73,42 +73,4 @@ class Playlist
     {
         return $this->name;
     }
-
-    /**
-     * Add track.
-     *
-     * @param \AppBundle\Entity\Track $track
-     *
-     * @return Playlist
-     */
-    public function addTrack(\AppBundle\Entity\Track $track)
-    {
-        $track->addPlaylist($this);
-        $this->tracks[] = $track;
-
-        return $this;
-    }
-
-    /**
-     * Remove track.
-     *
-     * @param \AppBundle\Entity\Track $track
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeTrack(\AppBundle\Entity\Track $track)
-    {
-        $track->removePlaylist($this);
-        return $this->tracks->removeElement($track);
-    }
-
-    /**
-     * Get tracks.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTracks()
-    {
-        return $this->tracks;
-    }
 }
