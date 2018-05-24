@@ -10,8 +10,28 @@ services:
         class: AppBundle\Form\Type\ArtistType
         tags:
             - { name: form.type }
+
     app.twig_extension:
         class: AppBundle\Twig\AppExtension
         public: false
         tags:
             - { name: twig.extension }
+
+    app.listenner.artist:
+        class: AppBundle\Event\ArtistListener
+        arguments: ['@mailer']
+        tags:
+            - { name: kernel.event_listener, event: app.artist.created, method: onArtistCreated }
+
+    app.command.artist:
+        class: AppBundle\Command\ArtistCommand
+        arguments: ['@app.repository.artist']
+        tags:
+            - { name: console.command }
+
+    app.repository.artist:
+        class: AppBundle\Repository\Artist
+        factory: ['@doctrine.orm.entity_manager', 'getRepository']
+        arguments: ['AppBundle:Artist']
+
+

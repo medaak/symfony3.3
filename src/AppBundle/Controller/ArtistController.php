@@ -10,6 +10,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Artist;
 use AppBundle\Form\Type\ArtistType;
+use AppBundle\Event\ArtistEvent;
+use AppBundle\Event\ArtistEvents;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,7 +32,6 @@ class ArtistController extends Controller
     {
 
         $artist = $this->getDoctrine()->getRepository(Artist::class)->find($id);
-        dump($artist);
         return $this->render('AppBundle:Artist:show.html.twig', ['artist' => $artist]);
     }
 
@@ -49,9 +50,15 @@ class ArtistController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager = $this->get('doctrine.orm.entity_manager');
             $entityManager->persist($artist);
             $entityManager->flush();
+
+            $event= new ArtistEvent($artist);
+            $this->get('event_dispatcher')->dispatch(ArtistEvents::ARTIST_CREATED, $event);
+
+
             return $this->redirect($this->generateUrl('app_artist_index'));
         }
 

@@ -10,6 +10,13 @@ namespace AppBundle\Repository;
  */
 class ArtistRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $id
+     * @param null $lockMode
+     * @param null $lockVersion
+     * @return mixed|null|object
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function find($id, $lockMode = null, $lockVersion = null)
     {
         return $this->createQueryBuilder('a')
@@ -19,6 +26,9 @@ class ArtistRepository extends \Doctrine\ORM\EntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * @return array|mixed
+     */
     public function findAll()
     {
         return $this->createQueryBuilder('a')

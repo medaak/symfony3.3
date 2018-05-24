@@ -1,3 +1,29 @@
-Hello {{ name }}!
-<br />
-HTTP Method : {{ app.request.method }}
+{% extends '::base.html.twig' %}
+{% block body %}
+<h1>Spotizer : Enjoy</h1>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Playlists</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="{{ path('app_playlist_index') }}" class="btn btn-primary">Voir les playlists</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Tracks</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="{{ path('app_track_index') }}" class="btn btn-primary">Voir les tracks</a>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Artistes</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="{{ path('app_artist_index') }}" class="btn btn-primary">Voir les artistes</a>
+            <a href="{{ path('app_artist_index') }}" class="btn btn-primary">Voir les artistes</a>
+        </div>
+    </div>
+{% endblock %}
